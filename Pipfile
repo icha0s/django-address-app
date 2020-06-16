@@ -16,6 +16,7 @@ freezegun = "*"
 sphinx = "*"
 rinohtype = "*"
 autoflake = "*"
+pytest-cov = "*"
 
 [packages]
 django = "*"
@@ -24,6 +25,7 @@ structlog = "*"
 requests = "*"
 psycopg2-binary = "*"
 typing-extensions = "*"
+swapper = "*"
 
 [requires]
 python_version = "3.8"

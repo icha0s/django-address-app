@@ -1,21 +1,15 @@
-from setuptools import find_packages
-from setuptools import setup
+from setuptools import find_packages, setup
 
 from django_address import __version__ as version
 
-REQUIREMENTS = ["Django>=2.2", "requests", "typing-extensions", "psycopg2-binary", "environs", "structlog"]
+requirements = ["Django>=2.2", "requests", "typing-extensions", "psycopg2-binary", "environs", "structlog"]
 
 extras_require = {
     "test": ["pytest-cov", "pytest-django", "pytest"],
     "lint": ["flake8", "wemake-python-styleguide", "isort"],
-    "doc": ["sphinx-glpi-theme", "sphinx", "rinohtype"],
 }
 
-extras_require["dev"] = (
-    extras_require["test"] +  # noqa: W504
-    extras_require["lint"] +  # noqa: W504
-    extras_require["doc"]
-)
+extras_require["dev"] = extras_require["test"] + extras_require["lint"]  # noqa: W504  # noqa: W504
 
 with open("README.md", "r", encoding="utf-8") as readme:
     long_description = readme.read()
@@ -32,7 +26,7 @@ setup(
     url="https://github.com/onufrienkovi/django-address-app",
     extras_require=extras_require,
     packages=find_packages(exclude=["tests", "docs", "scripts", "example"]),
-    install_requires=REQUIREMENTS,
+    install_requires=requirements,
     python_requires=">=3.7",
     classifiers=[
         "Environment :: Web Environment",
@@ -44,5 +38,6 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Topic :: Internet :: WWW/HTTP",
         "Topic :: Software Development :: Libraries :: Application Frameworks",
-        "Topic :: Software Development :: Libraries :: Python Modules"],
+        "Topic :: Software Development :: Libraries :: Python Modules",
+    ],
 )
