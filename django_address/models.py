@@ -1,9 +1,9 @@
 import json
 
 from django.db import models
+from django.forms.models import model_to_dict
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
-from django.forms.models import model_to_dict
 
 import swapper
 
@@ -211,7 +211,7 @@ class AbstractAddressModel(models.Model):
             "street_number": self.street_number,
             "latitude": self.latitude,
             "longitude": self.longitude,
-            "formatted_address": self.formatted_address
+            "formatted_address": self.formatted_address,
         }
 
     def to_json(self):
@@ -304,7 +304,7 @@ class Address(AbstractAddressModel):
             "street_number": self.street_number,
             "latitude": self.latitude,
             "longitude": self.longitude,
-            "formatted_address": self.formatted_address
+            "formatted_address": self.formatted_address,
         }
 
         district = self.locality.district if self.locality else None

@@ -1,7 +1,7 @@
 from django.db import IntegrityError
 from django.test import TestCase
 
-from django_address.models import Country, District, Region, Locality, Street, Address
+from django_address.models import Country, District, Locality, Region, Street
 
 
 class ModelsTestCase(TestCase):
@@ -31,7 +31,6 @@ class ModelsTestCase(TestCase):
         self.street2 = Street.objects.create(name="Soborna Street", locality=self.kherson)
         self.street3 = Street.objects.create(name="Teatralna Street", locality=self.kherson)
 
-
     def test_countries(self):
         countries = Country.objects.all()
         self.assertEqual(countries.count(), 3)
@@ -48,7 +47,9 @@ class ModelsTestCase(TestCase):
     def test_districts(self):
         districts = District.objects.all()
         self.assertEqual(districts.count(), 4)
-        self.assertListEqual(list(districts), [self.fr_nor_bessin, self.fr_nor_perche, self.fr_occ_gard, self.ua_kv_obolon])
+        self.assertListEqual(
+            list(districts), [self.fr_nor_bessin, self.fr_nor_perche, self.fr_occ_gard, self.ua_kv_obolon]
+        )
         with self.assertRaises(IntegrityError):
             District.objects.create(name="Obolon", region=self.ua_kv)
 
