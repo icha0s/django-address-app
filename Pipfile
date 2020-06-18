@@ -17,6 +17,7 @@ sphinx = "*"
 rinohtype = "*"
 autoflake = "*"
 pytest-cov = "*"
+codecov = "*"
 
 [packages]
 django = "*"

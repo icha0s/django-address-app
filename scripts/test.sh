@@ -3,4 +3,4 @@
 set -e
 set -x
 
-pipenv run pytest --cov=django_address --cov=tests --cov-report=term-missing --cov-config=setup.cfg ${@}
+pipenv run pytest --cov=django_address --cov=tests --cov-report=xml --cov-config=setup.cfg ${@}
