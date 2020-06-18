@@ -4,10 +4,13 @@ source = django-address
 
 [report]
 exclude_lines =
-    if self.debug:
     pragma: no cover
+    def __repr__
+    if self\.debug
     raise NotImplementedError
     if __name__ == .__main__.:
-ignore_errors = True
+ignore_errors = False
 omit =
     tests/*
+[html]
+directory = htmlcov
