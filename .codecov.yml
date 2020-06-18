@@ -1,0 +1,16 @@
+codecov:
+  branch: master
+
+coverage:
+  range: "75..100"
+
+  status:
+    project: no
+
+flags:
+  library:
+    paths:
+    - django_address/
+  tests:
+    paths:
+    - tests/
