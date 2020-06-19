@@ -12,3 +12,12 @@ test:
 
 test-cov:
 	sh scripts/test-cov-html.sh
+
+codecov:
+	sh scripts/codecov.sh
+
+build:
+	sh scripts/build.sh
+
+publish:
+	sh scripts/publish.sh
