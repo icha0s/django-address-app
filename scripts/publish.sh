@@ -3,4 +3,4 @@
 set -e
 set -x
 
-pipenv run python twine upload dist/* ${@}
+pipenv run twine upload dist/* ${@}

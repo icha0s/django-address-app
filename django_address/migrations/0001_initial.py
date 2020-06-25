@@ -49,7 +49,7 @@ class Migration(migrations.Migration):
                 ('slug', models.SlugField(max_length=100, unique=True, verbose_name='Slug')),
                 ('name', models.CharField(max_length=100, verbose_name='Name')),
                 ('postal_code', models.CharField(blank=True, default='', max_length=10, verbose_name='Postal code')),
-                ('district', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='localities', to=swapper.get_model_name("django_address", "District"), verbose_name='District')),
+                ('district', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='localities', to="django_address.District", verbose_name='District')),
             ],
             options={
                 'verbose_name': 'Locality',
@@ -64,7 +64,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=256, verbose_name='Street name')),
-                ('locality', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=swapper.get_model_name("django_address", "Locality"), verbose_name='Locality')),
+                ('locality', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="django_address.Locality", verbose_name='Locality')),
             ],
             options={
                 'verbose_name': 'Street',
@@ -81,7 +81,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=150, verbose_name='Name')),
                 ('code', models.CharField(blank=True, default='', max_length=5, verbose_name='Code')),
-                ('country', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to=swapper.get_model_name("django_address", "Country"), verbose_name='Country')),
+                ('country', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to="django_address.Country", verbose_name='Country')),
             ],
             options={
                 'verbose_name': 'Region',
@@ -95,12 +95,12 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='locality',
             name='region',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='localities', to=swapper.get_model_name("django_address", "Region"), verbose_name='Region'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='localities', to="django_address.Region", verbose_name='Region'),
         ),
         migrations.AddField(
             model_name='district',
             name='region',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='districts', to=swapper.get_model_name("django_address", "Region"), verbose_name='Region'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='districts', to="django_address.Region", verbose_name='Region'),
         ),
         migrations.CreateModel(
             name='Address',
@@ -113,8 +113,8 @@ class Migration(migrations.Migration):
                 ('latitude', models.FloatField(blank=True, default=0, verbose_name='Latitude')),
                 ('longitude', models.FloatField(blank=True, default=0, verbose_name='Longitude')),
                 ('apartment', models.CharField(blank=True, default='', max_length=10, verbose_name='Apartment')),
-                ('locality', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to=swapper.get_model_name("django_address", "Locality"), verbose_name='Locality')),
-                ('street', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to=swapper.get_model_name("django_address", "Street"), verbose_name='Street')),
+                ('locality', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to="django_address.Locality", verbose_name='Locality')),
+                ('street', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to="django_address.Street", verbose_name='Street')),
             ],
             options={
                 'verbose_name': 'Address',

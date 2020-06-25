@@ -238,7 +238,7 @@ class District(AbstractAdministrativeAreaLevel2Model):
     """District model."""
 
     region = models.ForeignKey(
-        to=swapper.get_model_name("django_address", "Region"),
+        to="Region",
         on_delete=models.CASCADE,
         verbose_name=_("Region"),
         related_name="districts",
@@ -257,14 +257,14 @@ class Locality(AbstractLocalityModel):
 
     slug = models.SlugField(_("Slug"), max_length=100, unique=True)
     region = models.ForeignKey(
-        to=swapper.get_model_name("django_address", "Region"),
+        to="Region",
         on_delete=models.CASCADE,
         verbose_name=_("Region"),
         related_name="localities",
     )
 
     district = models.ForeignKey(
-        to=swapper.get_model_name("django_address", "District"),
+        to="District",
         on_delete=models.CASCADE,
         verbose_name=_("District"),
         related_name="localities",
