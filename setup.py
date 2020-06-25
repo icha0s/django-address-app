@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 from django_address import __version__ as version
 
-requirements = ["Django>=2.2", "requests", "typing-extensions", "psycopg2-binary", "environs", "structlog"]
+requirements = ["Django>=2.2", "requests", "typing-extensions", "psycopg2-binary", "environs", "structlog", "swapper"]
 
 extras_require = {
     "test": ["pytest-cov", "pytest-django", "pytest"],
