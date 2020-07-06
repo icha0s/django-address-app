@@ -121,7 +121,7 @@ class Address(AbstractAddress):
         with transaction.atomic():
             try:
                 self.street = self.get_or_create_street()
-                return self.Address.objects.create(
+                return self.Address.objects.get_or_create(
                     locality=self.street.locality,  # noqa
                     street=self.street,
                     raw=self.raw,

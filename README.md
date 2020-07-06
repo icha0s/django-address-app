@@ -45,6 +45,46 @@ If you want change behavior processing AddressField, you can use your Service
 DJANGO_ADDRESS_SERVICE_CLASS = "django_address.service.Address"
 ```
 
+## Example
+
+```python
+from django.db import models
+from django_address.fields import AddressField
+
+class Order(models.Model):
+    """Order model."""
+    delivery_address = AddressField(verbose_name="Delivery address")
+```
+
+Setting value:
+
+using dict - required field 'raw' only
+```python 
+obj.address = {
+            "raw": "Volodymyrska st, 10",
+            "country": "Ukraine",  # can use pk or instance country model
+            "country_code": "UA",
+            "region": "Kyiv City",  # can use pk or instance Region model
+            "region_code": "UA-32",
+            "district": "",  # can use pk or instance District model
+            "district_code": "",
+            "locality": "Kiev",
+            "street": "Volodymyrska street",  # can use pk or instance Street model
+            "street_number": "10",
+            "postal_code": "02000",
+            "latitude": 50.456302,
+            "longitude": 30.517044,
+            "formatted_address": "Khreschatyk St, 15, Kyiv, Ukraine, 02000",
+        }
+
+```
+or
+
+```python
+obj.address = address # pk or Address model instance
+```
+
+
 ## Prerequisites
 
 You will need:
