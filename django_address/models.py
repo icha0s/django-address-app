@@ -309,7 +309,7 @@ class Address(AbstractAddressModel):
 
         district = self.locality.district if self.locality else None
         region = self.locality.region if self.locality else None
-        country = region if region else None
+        country = region.country if region else None
         if country:
             address.update({"country": country.to_dict()})
         if region:

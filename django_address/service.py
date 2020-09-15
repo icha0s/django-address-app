@@ -50,7 +50,7 @@ class Address(AbstractAddress):
     @classmethod
     def _get_or_create(cls, model, value, create=True, **kwargs):
         if isinstance(value, (int, UUID)):
-            return model.get_or_none(pk=value)
+            return model.objects.get_or_none(pk=value)
         obj = None
         if value:
             obj = model.objects.filter(name=value, **kwargs).first()
