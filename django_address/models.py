@@ -228,6 +228,11 @@ class Country(AbstractCountryModel):
 class Region(AbstractAdministrativeAreaLevel1Model):
     """Region model."""
 
+    country = models.ForeignKey(
+        to=swapper.get_model_name("django_address", "Country"), on_delete=models.PROTECT, verbose_name=_("Country"),
+        related_name="regions"
+    )
+
     class Meta(AbstractAdministrativeAreaLevel1Model.Meta):
         swappable = swapper.swappable_setting("django_address", "Region")
         verbose_name = _("Region")
@@ -285,12 +290,32 @@ class Locality(AbstractLocalityModel):
 class Street(AbstractStreetModel):
     """Street model."""
 
+    locality = models.ForeignKey(
+        to=swapper.get_model_name("django_address", "Locality"), on_delete=models.CASCADE, verbose_name=_("Locality"),
+        related_name="streets"
+    )
+
     class Meta(AbstractStreetModel.Meta):
         swappable = swapper.swappable_setting("django_address", "Street")
 
 
 class Address(AbstractAddressModel):
     """Address model."""
+
+    locality = models.ForeignKey(
+        to=swapper.get_model_name("django_address", "Locality"),
+        on_delete=models.CASCADE,
+        verbose_name=_("Locality"),
+        null=True,
+        related_name="addresses"
+    )
+    street = models.ForeignKey(
+        to=swapper.get_model_name("django_address", "Street"),
+        on_delete=models.CASCADE,
+        verbose_name=_("Street"),
+        null=True,
+        related_name="addresses"
+    )
 
     class Meta(AbstractAddressModel.Meta):
         swappable = swapper.swappable_setting("django_address", "Address")
